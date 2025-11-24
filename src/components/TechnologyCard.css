@@ -1,0 +1,12 @@
+.technology-card {
+  background-color: aliceblue;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 12px;
+}
+.technology-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+}
