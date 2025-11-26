@@ -1,6 +1,6 @@
 import "./TechnologyCard.css";
 
-function TechnologyCard({ title, description, status }) {
+function TechnologyCard({ title, description, status, onClick }) {
   const cardClass =
       status === "completed"
       ? "completed"
@@ -8,7 +8,7 @@ function TechnologyCard({ title, description, status }) {
       ? "in-progress"
       : "not-started";
   return (
-    <div className={`technology-card ${cardClass}`}>
+    <div className={`technology-card ${cardClass}`} onClick={onClick}>
       <div className="technology-title">
         <h3>{title}</h3>
       </div>
