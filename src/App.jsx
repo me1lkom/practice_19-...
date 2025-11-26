@@ -116,9 +116,9 @@ function App() {
       <div className="technology-list">
         <h1>RoadMap</h1>
         <FilterChange onFilterChange={setSelectedFilter} />
-        <ul>
+        <div className="technology__grid">
           {filteredTechnologies.map((technology) => (
-            <li key={technology.id}>
+            <div key={technology.id}>
               <button>
                 <TechnologyCard
                   title={technology.title}
@@ -127,9 +127,9 @@ function App() {
                   onClick={() => handleStatusChange(technology.id)}
                 />
               </button>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
         <QuickActions
           allcompleted={handleAllCompleted}
           reset={handleReset}
