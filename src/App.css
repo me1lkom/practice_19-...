@@ -69,6 +69,7 @@ body {
   display: grid;
   grid-auto-flow: column;
   min-height: 1rem;
+  margin: 10px 0;
 }
 /* .technology-list ul {
   list-style: none;
