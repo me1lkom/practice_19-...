@@ -1,6 +1,6 @@
 function QuickActions({ allcompleted, reset, selectRandom }) {
   return (
-    <div className="quickActions btn">
+    <div className="quickActions">
       <button className="action-allcompleted btn" onClick={allcompleted}>
         <span>Отметить все как выполненные</span>
       </button>

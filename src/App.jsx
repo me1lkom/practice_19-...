@@ -1,37 +1,85 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TechnologyCard from "./components/TechnologyCard.jsx";
 import ProgressHeader from "./components/ProgressHeader.jsx";
 import QuickActions from "./components/QuickActions.jsx";
 import FilterChange from "./components/FilterChange.jsx";
+import TechnologyNotes from "./components/TechnologyNotes.jsx";
+import SaveLoadActions from "./components/SaveLoadActions.jsx";
 
 function App() {
-  const [technologies, setTechnologies] = useState([
-    {
-      id: 1,
-      title: "React Components",
-      description: "Изучение базовых компонентов",
-      status: "completed",
-    },
-    {
-      id: 2,
-      title: "JSX Syntax",
-      description: "Освоение синтаксиса JSX",
-      status: "in-progress",
-    },
-    {
-      id: 3,
-      title: "State Management",
-      description: "Работа с состоянием компонентов",
-      status: "not-started",
-    },
-    {
-      id: 4,
-      title: "State",
-      description: "Работа компонентов",
-      status: "not-started",
-    },
-  ]);
+  const [technologies, setTechnologies] = useState(() => {
+    try {
+      const saved = localStorage.getItem("techTrackerData");
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch (error) {
+      console.error("Ошибка при загрузке начальных данных:", error);
+    }
+
+    return [
+      {
+        id: 1,
+        title: "React Components",
+        description: "Изучение базовых компонентов",
+        status: "completed",
+        notes: "",
+      },
+      {
+        id: 2,
+        title: "JSX Syntax",
+        description: "Освоение синтаксиса JSX",
+        status: "in-progress",
+        notes: "",
+      },
+      {
+        id: 3,
+        title: "State Management",
+        description: "Работа с состоянием компонентов",
+        status: "not-started",
+        notes: "",
+      },
+      {
+        id: 4,
+        title: "State",
+        description: "Работа компонентов",
+        status: "not-started",
+        notes: "",
+      },
+    ];
+  });
+
+  // const [technologies, setTechnologies] = useState([
+  //   {
+  //     id: 1,
+  //     title: "React Components",
+  //     description: "Изучение базовых компонентов",
+  //     status: "completed",
+  //     notes: "",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "JSX Syntax",
+  //     description: "Освоение синтаксиса JSX",
+  //     status: "in-progress",
+  //     notes: "",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "State Management",
+  //     description: "Работа с состоянием компонентов",
+  //     status: "not-started",
+  //     notes: "",
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "State",
+  //     description: "Работа компонентов",
+  //     status: "not-started",
+  //     notes: "",
+  //   },
+  // ]);
 
   const totalCount = technologies.length;
   const completedCount = technologies.filter(
@@ -98,11 +146,43 @@ function App() {
   };
 
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const filteredTechnologies = technologies.filter((tech) => {
-    if (selectedFilter === "all") return true;
-    return tech.status === selectedFilter;
+    // Сначала проверяем статус
+    if (selectedFilter !== "all" && tech.status !== selectedFilter) {
+      return false;
+    }
+
+    // Затем проверяем поиск (если статус прошел)
+    if (!searchQuery) {
+      return true; // Поиска нет - всё проходит
+    }
+
+    // Есть поиск - проверяем текст
+    const query = searchQuery.toLowerCase();
+    return (
+      tech.title.toLowerCase().includes(query) ||
+      tech.description.toLowerCase().includes(query)
+    );
   });
+
+
+  useEffect(() => {
+    localStorage.setItem("techTrackerData", JSON.stringify(technologies));
+    console.log("Данные сохранены в localStorage");
+  }, [technologies]);
+
+  const updateTechnologyNotes = (techId, newNotes) => {
+    setTechnologies((prevTech) =>
+      prevTech.map((tech) =>
+        tech.id === techId ? { ...tech, notes: newNotes } : tech
+      )
+    );
+  };
+
+  // Фильтрация технологий
+
   return (
     <div className="App">
       <div className="progress">
@@ -115,7 +195,26 @@ function App() {
       </div>
       <div className="technology-list">
         <h1>RoadMap</h1>
-        <FilterChange onFilterChange={setSelectedFilter} />
+        <div className="actions-button">
+          <div className="quick-actions">
+            <QuickActions
+              allcompleted={handleAllCompleted}
+              reset={handleReset}
+              selectRandom={handleSelectRandom}
+            />
+          </div>
+          <FilterChange onFilterChange={setSelectedFilter} />
+        </div>
+        <div className="search-box">
+          <input
+            type="text"
+            placeholder="Поиск технологий..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+          />
+          <span>Найдено: {filteredTechnologies.length}</span>
+        </div>
         <div className="technology__grid">
           {filteredTechnologies.map((technology) => (
             <div key={technology.id}>
@@ -126,15 +225,15 @@ function App() {
                   status={technology.status}
                   onClick={() => handleStatusChange(technology.id)}
                 />
+                <TechnologyNotes
+                  notes={technology.notes}
+                  onNotesChange={updateTechnologyNotes}
+                  techId={technology.id}
+                />
               </button>
             </div>
           ))}
         </div>
-        <QuickActions
-          allcompleted={handleAllCompleted}
-          reset={handleReset}
-          selectRandom={handleSelectRandom}
-        />
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ function TechnologyCard({ title, description, status, onClick }) {
       : status === "in-progress"
       ? "in-progress"
       : "not-started";
+
   return (
     <div className={`technology-card ${cardClass}`} onClick={onClick}>
       <div className="technology-title">
@@ -17,6 +18,9 @@ function TechnologyCard({ title, description, status, onClick }) {
           <span>Статус: {status}</span>
         </div>
         <span>{description}</span>
+      </div>
+      <div className="technology-notes">
+        
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 function FilterChange({ onFilterChange }) {
   return (
-    <div className="FilterChange btn">
+    <div className="FilterChange">
       <button className="action-all btn" onClick = {() => onFilterChange("all")}>
         <span>Все технологии</span>
       </button>
