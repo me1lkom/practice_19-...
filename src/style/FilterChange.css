@@ -1,0 +1,23 @@
+/* Кнопки фильтров */
+.action-all {
+  background: #3182ce;
+}
+
+.action-completed {
+  background: #38a169;
+}
+
+.action-inProgress {
+  background: #dd6b20;
+}
+
+.action-notStarted {
+  background: #e53e3e;
+}
+
+.FilterChange {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}

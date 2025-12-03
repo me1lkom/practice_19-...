@@ -1,3 +1,4 @@
+import "../style/Progress.css"
 
 function ProgressHeader({ totalCount, completedCount, inProgressCount, notStartedCount }) {
   return (

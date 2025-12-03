@@ -1,3 +1,4 @@
+import "../style/FilterChange.css"
 function FilterChange({ onFilterChange }) {
   return (
     <div className="FilterChange">

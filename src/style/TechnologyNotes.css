@@ -1,0 +1,45 @@
+/* Стили для заметок */
+.notes-section {
+  padding: 20px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  border-radius: 5px;
+}
+
+.notes-section h4 {
+  margin: 0 0 12px 0;
+  color: #2d3748;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.notes-section textarea {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+  transition: all 0.3s ease;
+  background: white;
+  color: #2d3748;
+}
+
+.notes-section textarea:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.notes-section textarea::placeholder {
+  color: #a0aec0;
+}
+
+.notes-hint {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #718096;
+  text-align: right;
+}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Modal from "../reusable/Modal.jsx";
-
+import "../style/QuickActions.css"
 function QuickActions({ allcompleted, reset, selectRandom, technologies }) {
   const [showExportModal, setShowExportModal] = useState(false);
   const handleExport = () => {

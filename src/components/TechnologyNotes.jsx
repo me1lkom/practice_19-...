@@ -1,3 +1,5 @@
+import "../style/TechnologyNotes.css";
+
 function TechnologyNotes({ notes, onNotesChange, techId }) {
   return (
     <div className="notes-section">

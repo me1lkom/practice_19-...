@@ -69,7 +69,6 @@ function App() {
               reset={handleReset}
               selectRandom={handleSelectRandom}
               technology={technologies}
-              Export
             />
           </div>
           <FilterChange onFilterChange={setSelectedFilter} />
@@ -87,14 +86,12 @@ function App() {
         <div className="technologies-grid">
           {filteredTechnologies.map((tech) => (
             <div key={tech.id}>
-              <button>
                 <TechnologyCard
                   key={tech.id}
                   technology={tech}
                   onStatusChange={() => updateStatus(tech.id)}
                   onNotesChange={updateNotes}
                 />
-              </button>
             </div>
           ))}
         </div>

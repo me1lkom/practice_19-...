@@ -1,0 +1,27 @@
+/* Панель действий и фильтров */
+.actions-button {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.quickActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Кнопки быстрых действий */
+.action-allcompleted {
+  background: #38a169;
+}
+
+.action-reset {
+  background: #e53e3e;
+}
+
+.action-selectRandom {
+  background: #dd6b20;
+}
