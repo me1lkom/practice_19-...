@@ -22,7 +22,7 @@ body {
 }
 
 /* Основной контейнер приложения */
-.App {
+.app {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +32,7 @@ body {
 }
 
 /* Секция прогресса */
-.progress {
+.app-header {
   background: white;
   border-radius: 16px;
   padding: 24px;
@@ -40,6 +40,16 @@ body {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   border: 1px solid #e1e8ed;
 }
+
+.app-main {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e1e8ed;
+}
+
 
 .progress-info {
   display: grid;
@@ -223,13 +233,15 @@ body {
 }
 
 /* Сетка технологий */
-.technology__grid {
+.technologies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 24px;
+  /* grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); */
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 25rem));
+  gap: 1.5rem;
+  justify-content: space-around;
 }
 
-.technology__grid > div {
+.technologies-grid > div {
   background: white;
   border-radius: 16px;
   overflow: hidden;
@@ -237,12 +249,12 @@ body {
   border: 1px solid #e2e8f0;
 }
 
-.technology__grid > div:hover {
+.technologies-grid > div:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
 }
 
-.technology__grid button {
+.technologies-grid button {
   width: 100%;
   border: none;
   background: none;
@@ -314,6 +326,7 @@ body {
   padding: 20px;
   background: #f8fafc;
   border-top: 1px solid #e2e8f0;
+  border-radius: 5px;
 }
 
 .notes-section h4 {

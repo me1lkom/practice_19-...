@@ -13,6 +13,7 @@ function FilterChange({ onFilterChange }) {
       <button className="action-notStarted btn" onClick = {() => onFilterChange("not-started")}>
         <span>Только не выполненные</span>
       </button>
+      
     </div>
   );
 }
