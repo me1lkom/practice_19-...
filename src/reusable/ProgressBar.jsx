@@ -5,7 +5,7 @@ function ProgressBar({
   color = "#4CAF50", // Цвет заполнения
   height = 20, // Высота прогресс-бара
   showPercentage = true, // Показывать ли процент
-  animated = false, // Анимировать ли заполнение
+  animated = true, // Анимировать ли заполнение
 }) {
   // Обеспечиваем, чтобы прогресс был в пределах 0-100
   const normalizedProgress = Math.min(100, Math.max(0, progress));

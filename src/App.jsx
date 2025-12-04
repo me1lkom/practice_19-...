@@ -25,17 +25,14 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredTechnologies = technologies.filter((tech) => {
-    // Сначала проверяем статус
     if (selectedFilter !== "all" && tech.status !== selectedFilter) {
       return false;
     }
 
-    // Затем проверяем поиск (если статус прошел)
     if (!searchQuery) {
-      return true; // Поиска нет - всё проходит
+      return true;
     }
 
-    // Есть поиск - проверяем текст
     const query = searchQuery.toLowerCase();
     return (
       tech.title.toLowerCase().includes(query) ||
