@@ -1,99 +1,91 @@
 import "./style/App.css";
-import { useState } from "react";
-import TechnologyCard from "./components/TechnologyCard.jsx";
-import ProgressHeader from "./components/ProgressHeader.jsx";
-import QuickActions from "./components/QuickActions.jsx";
-import FilterChange from "./components/FilterChange.jsx";
-import useTechnologies from "./components/useTechnologies.jsx";
-import ProgressBar from "./reusable/ProgressBar.jsx";
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login.jsx";
+import Navigation from "./components/Navigation.jsx";
+import Home from "./pages/Home.jsx";
+import TechnologyList from "./pages/TechnologyList.jsx";
+import Settings from "./pages/Settings.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import TechnologyDetail from "./pages/TechnologyDetail.jsx";
+import Statistics from "./pages/Statistics.jsx";
+import AddTechnology from "./pages/AddTechnology.jsx";
+
 function App() {
-  const {
-    technologies,
-    updateStatus,
-    updateNotes,
-    progress,
-    handleAllCompleted,
-    handleReset,
-    handleSelectRandom,
-    totalCount,
-    completedCount,
-    inProgressCount,
-    notStartedCount,
-  } = useTechnologies();
 
-  const [selectedFilter, setSelectedFilter] = useState("all");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
 
-  const filteredTechnologies = technologies.filter((tech) => {
-    if (selectedFilter !== "all" && tech.status !== selectedFilter) {
-      return false;
-    }
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const user = localStorage.getItem("username") || "";
+    setIsLoggedIn(loggedIn);
+    setUsername(user);
+  }, []);
 
-    if (!searchQuery) {
-      return true;
-    }
+  const handleLogin = (user) => {
 
-    const query = searchQuery.toLowerCase();
-    return (
-      tech.title.toLowerCase().includes(query) ||
-      tech.description.toLowerCase().includes(query)
-    );
-  });
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("username", user);
+
+    setIsLoggedIn(true);
+    setUsername(user);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("username");
+    setIsLoggedIn(false);
+    setUsername("");
+  };
 
   return (
-    <div className="app">
-      <header className="app-header">
-        <h1>Трекер изучения технологий</h1>
-        <ProgressBar
-          progress={progress}
-          label="Общий прогресс"
-          color="#4CAF50"
-          animated={true}
-          height={20}
+    <Router>
+      <div className="app">
+        <Navigation 
+          isLoggedIn={isLoggedIn}
+          username={username}
+          onLogout={handleLogout}
         />
-        <ProgressHeader
-          totalCount = {totalCount}
-          completedCount={completedCount}
-          inProgressCount={inProgressCount}
-          notStartedCount={notStartedCount}
-        />
-      </header>
-      <main className="app-main">
-        <div className="actions-button">
-          <div className="quick-actions">
-            <QuickActions
-              allcompleted={handleAllCompleted}
-              reset={handleReset}
-              selectRandom={handleSelectRandom}
-              technology={technologies}
+        
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            
+            <Route 
+              path="/login" 
+              element={<Login onLogin={handleLogin} />} 
             />
-          </div>
-          <FilterChange onFilterChange={setSelectedFilter} />
-        </div>
-        <div className="search-box">
-          <input
-            type="text"
-            placeholder="Поиск технологий..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="search-input"
-          />
-          <span>Найдено: {filteredTechnologies.length}</span>
-        </div>
-        <div className="technologies-grid">
-          {filteredTechnologies.map((tech) => (
-            <div key={tech.id}>
-                <TechnologyCard
-                  key={tech.id}
-                  technology={tech}
-                  onStatusChange={() => updateStatus(tech.id)}
-                  onNotesChange={updateNotes}
-                />
-            </div>
-          ))}
-        </div>
-      </main>
-    </div>
+            
+            <Route path="/technologies" element={<TechnologyList />} />
+
+            <Route path="/statistics" element={<Statistics />} />
+
+            <Route path="/technologies/:techId" element={<TechnologyDetail />} />
+            
+            <Route
+              path="/settings"
+              element={
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <Settings />
+                </ProtectedRoute>
+              }
+            />
+            
+            <Route 
+              path="/add-technology" 
+              element={
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <AddTechnology />
+                </ProtectedRoute>
+              } 
+            />
+            
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
+
 export default App;
