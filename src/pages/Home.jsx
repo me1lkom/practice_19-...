@@ -9,6 +9,9 @@ import ProgressBar from "../reusable/ProgressBar.jsx";
 
 import RoadmapImporter from "../components/RoadmapImporter.jsx";
 import SearchBar from "../components/SearchBar.jsx";
+
+import DataExporter from "../components/DataExporter.jsx";
+import DataImporter from "../components/DataImporter.jsx";
 function Home() {
   const {
     technologies,
@@ -77,6 +80,8 @@ function Home() {
       </header>
       <main className="app-main">
         <div className="actions-button">
+          <DataExporter technologies={technologies}/>
+          <DataImporter onImport={addTechnology}/>
           <RoadmapImporter
               onImport={handleImportTechnology}
               onReset={resetToStock}
