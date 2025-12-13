@@ -148,6 +148,8 @@ function useTechnologies() {
     return initialTechnologies;
   };
 
+  
+
   return {
     technologies,
 

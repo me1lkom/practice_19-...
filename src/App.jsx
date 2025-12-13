@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import TechnologyDetail from "./pages/TechnologyDetail.jsx";
 import Statistics from "./pages/Statistics.jsx";
 import AddTechnology from "./pages/AddTechnology.jsx";
+import DeadlineManagement from "./pages/DeadlineManagement.jsx";
 
 function App() {
 
@@ -60,6 +61,9 @@ function App() {
             <Route path="/technologies" element={<TechnologyList />} />
 
             <Route path="/statistics" element={<Statistics />} />
+
+            <Route path="/deadline" element={<DeadlineManagement />} />
+
 
             <Route path="/technologies/:techId" element={<TechnologyDetail />} />
             

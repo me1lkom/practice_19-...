@@ -1,24 +1,29 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import "../style/TechnologyList.css";
+import useTechnologies from "../components/useTechnologies.jsx";
+
 
 function TechnologyList() {
-  const [technologies, setTechnologies] = useState([]);
+  const { technologies } = useTechnologies();
+
+  // const [technologies, setTechnologies] = useState([]);
   // Загружаем технологии из localStorage
-  useEffect(() => {
-    const saved = localStorage.getItem("technologies");
-    if (saved) {
-      setTechnologies(JSON.parse(saved));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const saved = localStorage.getItem("technologies");
+  //   if (saved) {
+  //     setTechnologies(JSON.parse(saved));
+  //   }
+  // }, []);
+
   return (
     <div className="page">
       <div className="page-header">
         <h1>Все технологии</h1>
         
-        {/* <Link to="/add-technology" className="btn btn-primary">
+        <Link to="/add-technology" className="btn btn-primary">
           + Добавить технологию
-        </Link> */}
+        </Link>
       </div>
 
       <div className="technologies-grid">
@@ -37,14 +42,14 @@ function TechnologyList() {
           </div>
         ))}
       </div>
-      {technologies.length === 0 && (
+      {/* {technologies.length === 0 && (
         <div className="empty-state">
           <p>Технологий пока нет.</p>
           <Link to="/add-technology" className="btn btn-primary">
             Добавить первую технологию
           </Link>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

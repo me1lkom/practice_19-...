@@ -1,0 +1,123 @@
+/* .technology-manager {
+  background: white;
+  color: #2d3748;
+} */
+/* technology-form.css или App.css */
+
+/* 1. Стили для скрытого aria-live региона */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 2. Улучшенные стили для ошибок (более заметные) */
+.error {
+  border-color: #dc3545 !important;
+  background-color: #fff8f8;
+  outline: 2px solid #dc3545;
+  outline-offset: 2px;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* 3. Стили для фокуса (важно для клавиатурной навигации) */
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: 3px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* 4. Стили для сообщения о статусе формы */
+.form-validation-info {
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+.form-validation-info:not(:empty) {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+/* 5. Стили для кнопок в состоянии hover/focus */
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #0056b3;
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+/* 6. Визуальные индикаторы для обязательных полей */
+.required::after {
+  content: " *";
+  color: #dc3545;
+}
+
+/* 7. Улучшение видимости полей ресурсов */
+.resource-field {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.remove-resource {
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-resource:hover,
+.remove-resource:focus {
+  background: #bd2130;
+}
+
+.add-resource {
+  background: transparent;
+  color: #007bff;
+  border: 1px dashed #007bff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.add-resource:hover,
+.add-resource:focus {
+  background-color: #e7f3ff;
+}

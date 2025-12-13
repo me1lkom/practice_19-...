@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import "../style/Navigation.css"
+import "../style/Navigation.css";
 function Navigation({ isLoggedIn, username, onLogout }) {
   const location = useLocation();
 
@@ -14,10 +14,10 @@ function Navigation({ isLoggedIn, username, onLogout }) {
 
         <li>
           <Link
-            to="/technologies"
-            className={location.pathname === "/technologies" ? "active" : ""}
+            to="/deadline"
+            className={location.pathname === "/deadline" ? "active" : ""}
           >
-            Все технологии
+            Управление дедлайнами
           </Link>
         </li>
 
@@ -30,19 +30,17 @@ function Navigation({ isLoggedIn, username, onLogout }) {
           </Link>
         </li>
 
+        <li>
+          <Link
+            to="/technologies"
+            className={location.pathname === "/technologies" ? "active" : ""}
+          >
+            Все технологии
+          </Link>
+        </li>
+
         {isLoggedIn ? (
           <>
-            <li>
-              <Link
-                to="/add-technology"
-                className={
-                  location.pathname === "/add-technology" ? "active" : ""
-                }
-              >
-                Добавить технологию
-              </Link>
-            </li>
-
             <li>
               <Link
                 to="/settings"
