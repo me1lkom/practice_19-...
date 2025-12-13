@@ -6,11 +6,16 @@ import QuickActions from "../components/QuickActions.jsx";
 import FilterChange from "../components/FilterChange.jsx";
 import useTechnologies from "../components/useTechnologies.jsx";
 import ProgressBar from "../reusable/ProgressBar.jsx";
+
+import RoadmapImporter from "../components/RoadmapImporter.jsx";
+import SearchBar from "../components/SearchBar.jsx";
 function Home() {
   const {
     technologies,
     updateStatus,
     updateNotes,
+    addTechnology,
+    resetToInitial,
     progress,
     handleAllCompleted,
     handleReset,
@@ -23,6 +28,10 @@ function Home() {
 
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (query) => {
+    setSearchQuery(query);
+  };
 
   const filteredTechnologies = technologies.filter((tech) => {
     if (selectedFilter !== "all" && tech.status !== selectedFilter) {
@@ -40,6 +49,14 @@ function Home() {
     );
   });
 
+  const handleImportTechnology = (techData) => {
+    addTechnology(techData);
+    console.log("Импортируем:", techData);
+  };
+  const resetToStock = () => {
+    resetToInitial();
+  };
+
   return (
     <div className="app">
       <header className="app-header">
@@ -52,7 +69,7 @@ function Home() {
           height={20}
         />
         <ProgressHeader
-          totalCount = {totalCount}
+          totalCount={totalCount}
           completedCount={completedCount}
           inProgressCount={inProgressCount}
           notStartedCount={notStartedCount}
@@ -60,6 +77,11 @@ function Home() {
       </header>
       <main className="app-main">
         <div className="actions-button">
+          <RoadmapImporter
+              onImport={handleImportTechnology}
+              onReset={resetToStock}
+              existingTechnologies={technologies}
+            />
           <div className="quick-actions">
             <QuickActions
               allcompleted={handleAllCompleted}
@@ -71,24 +93,18 @@ function Home() {
           <FilterChange onFilterChange={setSelectedFilter} />
         </div>
         <div className="search-box">
-          <input
-            type="text"
-            placeholder="Поиск технологий..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="search-input"
-          />
+          <SearchBar onSearchChange={handleSearchChange}/>
           <span>Найдено: {filteredTechnologies.length}</span>
         </div>
         <div className="technologies-grid">
           {filteredTechnologies.map((tech) => (
             <div key={tech.id}>
-                <TechnologyCard
-                  key={tech.id}
-                  technology={tech}
-                  onStatusChange={() => updateStatus(tech.id)}
-                  onNotesChange={updateNotes}
-                />
+              <TechnologyCard
+                key={tech.id}
+                technology={tech}
+                onStatusChange={() => updateStatus(tech.id)}
+                onNotesChange={updateNotes}
+              />
             </div>
           ))}
         </div>

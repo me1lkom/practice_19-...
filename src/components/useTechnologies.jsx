@@ -125,12 +125,37 @@ function useTechnologies() {
     (tech) => tech.status === "not-started"
   ).length;
 
+  const addTechnology = (techData) => {
+    // Если techData - массив, добавляем несколько технологий
+    const techsToAdd = Array.isArray(techData) ? techData : [techData];
+
+    const maxId = technologies.reduce((max, tech) => Math.max(max, tech.id), 0);
+
+    const newTechs = techsToAdd.map((tech, index) => ({
+      id: maxId + index + 1,
+      title: tech.title,
+      description: tech.description || "",
+      status: "not-started",
+      notes: tech.notes || "",
+    }));
+
+    setTechnologies((prev) => [...prev, ...newTechs]);
+    return newTechs;
+  };
+
+  const resetToInitial = () => {
+    setTechnologies(initialTechnologies);
+    return initialTechnologies;
+  };
+
   return {
     technologies,
 
     updateStatus,
     updateNotes,
 
+    addTechnology,
+    resetToInitial,
     handleAllCompleted,
     handleReset,
     handleSelectRandom,
