@@ -1,9 +1,15 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../style/TechnologyDetail.css";
-
+import useTechnologies from "../components/useTechnologies";
 function TechnologyDetail() {
-    
+  
+  const { 
+    deleteTechnology,  
+  } = useTechnologies();
+
+  
+
   const { techId } = useParams();
 
   const navigate = useNavigate();
@@ -30,6 +36,12 @@ function TechnologyDetail() {
     }
   };
 
+  const handleDelete = () => {
+    if (window.confirm(`Удалить технологию "${technology.title}"?`)) {
+      deleteTechnology(technology.id);
+      navigate(-1);
+    }
+  };
 
 
   if (!technology) {
@@ -88,6 +100,10 @@ function TechnologyDetail() {
             <p>{technology.notes}</p>
           </div>
         )}
+      </div>
+
+      <div>
+        <button onClick={handleDelete}> Удалить технологию </button>
       </div>
     </div>
   );

@@ -1,37 +1,23 @@
-import TechnologyForm from "../components/TechnologyForm";
-import Modal from "../reusable/Modal"; // Импортируем готовую модалку
+import TechnologyForm from "../components/TechnologyForm.jsx";
+import Modal from "../reusable/Modal.jsx"; // Импортируем готовую модалку
+import useTechnologies from "../components/useTechnologies.jsx"; // 👈 Импортируем хук!
 
 import { useState } from "react";
 function AddTechnology() {
-  const [technologies, setTechnologies] = useState([]);
+  const { 
+    technologies, 
+    addTechnology, 
+    deleteTechnology,  
+  } = useTechnologies();
+  
   const [showForm, setShowForm] = useState(false);
   const [editingTech, setEditingTech] = useState(null);
 
   // Обработчик сохранения технологии
   const handleSaveTechnology = (techData) => {
-    if (editingTech) {
-      // Редактирование существующей технологии
-      setTechnologies((prev) =>
-        prev.map((tech) =>
-          tech.id === editingTech.id
-            ? { ...tech, ...techData, updatedAt: new Date().toISOString() }
-            : tech
-        )
-      );
-    } else {
-      // Добавление новой технологии
-      const newTechnology = {
-        id: Date.now(), // В реальном приложении ID генерируется на сервере
-        ...techData,
-        status: "not-started",
-        createdAt: new Date().toISOString(),
-        notes: "",
-        progress: 0,
-      };
-      setTechnologies((prev) => [...prev, newTechnology]);
-    }
 
-    // Закрываем форму после сохранения
+    addTechnology(techData)
+
     setShowForm(false);
     setEditingTech(null);
   };

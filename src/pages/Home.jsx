@@ -27,6 +27,13 @@ function Home() {
     completedCount,
     inProgressCount,
     notStartedCount,
+
+    isBulkMode,
+    selectedTechIds,
+    setIsBulkMode,
+    toggleTechSelection,
+    updateStatusBulk,
+    clearSelection,
   } = useTechnologies();
 
   const [selectedFilter, setSelectedFilter] = useState("all");
@@ -80,13 +87,13 @@ function Home() {
       </header>
       <main className="app-main">
         <div className="actions-button">
-          <DataExporter technologies={technologies}/>
-          <DataImporter onImport={addTechnology}/>
+          <DataExporter technologies={technologies} />
+          <DataImporter onImport={addTechnology} />
           <RoadmapImporter
-              onImport={handleImportTechnology}
-              onReset={resetToStock}
-              existingTechnologies={technologies}
-            />
+            onImport={handleImportTechnology}
+            onReset={resetToStock}
+            existingTechnologies={technologies}
+          />
           <div className="quick-actions">
             <QuickActions
               allcompleted={handleAllCompleted}
@@ -96,9 +103,28 @@ function Home() {
             />
           </div>
           <FilterChange onFilterChange={setSelectedFilter} />
+
+          <button onClick={() => setIsBulkMode(!isBulkMode)}>
+            {isBulkMode
+              ? "Завершить редактирвоание"
+              : "Массовое редактивароние"}
+          </button>
+
+          {isBulkMode && (
+            <div className="bulk-controls">
+              <span> Выбрано: {selectedTechIds.length}</span>
+              <select onChange={(e) => updateStatusBulk(e.target.value)}>
+                <option value="">Выберите статус...</option>
+                <option value="completed">Завершено</option>
+                <option value="in-progress">В процессе</option>
+                <option value="not-started">Не начато</option>
+              </select>
+              <button onClick={clearSelection}>Сбросить выбор</button>
+            </div>
+          )}
         </div>
         <div className="search-box">
-          <SearchBar onSearchChange={handleSearchChange}/>
+          <SearchBar onSearchChange={handleSearchChange} />
           <span>Найдено: {filteredTechnologies.length}</span>
         </div>
         <div className="technologies-grid">
@@ -109,6 +135,9 @@ function Home() {
                 technology={tech}
                 onStatusChange={() => updateStatus(tech.id)}
                 onNotesChange={updateNotes}
+                isBulkMode={isBulkMode}
+                isSelected={selectedTechIds.includes(tech.id)}
+                onSelect={() => toggleTechSelection(tech.id)}
               />
             </div>
           ))}

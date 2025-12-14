@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useLocalStorage from "../reusable/useLocalStorage.jsx";
 // Начальные данные для технологий
 const initialTechnologies = [
@@ -126,7 +127,6 @@ function useTechnologies() {
   ).length;
 
   const addTechnology = (techData) => {
-
     const techsToAdd = Array.isArray(techData) ? techData : [techData];
 
     const maxId = technologies.reduce((max, tech) => Math.max(max, tech.id), 0);
@@ -148,6 +148,41 @@ function useTechnologies() {
     return initialTechnologies;
   };
 
+  const deleteTechnology = (techId) => {
+    setTechnologies((prev) => {
+      return prev.filter((tech) => tech.id !== techId);
+    });
+  };
+
+  const [selectedTechIds, setSelectedTechIds] = useState([]);
+  const [isBulkMode, setIsBulkMode] = useState(false);
+
+  const updateStatusBulk = (newStatus) => {
+    setTechnologies((prev) =>
+      prev.map((tech) =>
+        selectedTechIds.includes(tech.id)
+          ? { ...tech, status: newStatus }
+          : tech
+      )
+    );
+    setIsBulkMode(false);
+    setSelectedTechIds([]);
+  };
+
+  const toggleTechSelection = (techId) => {
+    setSelectedTechIds((prevSelectedIds) => {
+      if (prevSelectedIds.includes(techId)){
+        return selectedTechIds.filter(id => id != techId)
+      }
+      else {
+        return [...selectedTechIds, techId]
+      }
+    });
+  };
+
+  const clearSelection = () => {
+    setSelectedTechIds([])
+  }
 
   return {
     technologies,
@@ -156,6 +191,15 @@ function useTechnologies() {
     updateNotes,
 
     addTechnology,
+    deleteTechnology,
+
+    isBulkMode,
+    selectedTechIds,
+    setIsBulkMode,
+    toggleTechSelection,
+    updateStatusBulk,
+    clearSelection,
+
     resetToInitial,
     handleAllCompleted,
     handleReset,
