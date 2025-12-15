@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 function DataExporter({ technologies }) {
-  const [exportFormat, setExportFormat] = useState('json');
+  const [exportFormat, setExportFormat] = useState("json");
   const [includeUserData, setIncludeUserData] = useState(true);
 
   const exportData = () => {
@@ -34,7 +34,7 @@ function DataExporter({ technologies }) {
     URL.revokeObjectURL(url);
   };
 
-  const canExport =  true;
+  const canExport = true;
 
   return (
     <div className="data-exporter">
@@ -73,7 +73,7 @@ function DataExporter({ technologies }) {
 
       {!canExport && (
         <div className="export-warning" role="alert">
-          ⚠️ Нет данных для экспорта. Добавьте технологии в трекер.
+          Нет данных для экспорта. Добавьте технологии в трекер.
         </div>
       )}
 
@@ -83,7 +83,7 @@ function DataExporter({ technologies }) {
         className="btn-primary"
         aria-describedby={canExport ? "export-help" : "export-warning"}
       >
-        📥 Экспортировать данные
+        Экспортировать данные
       </button>
 
       <div id="export-help" className="help-text">
