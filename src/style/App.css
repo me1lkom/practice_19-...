@@ -214,3 +214,160 @@ body {
     transform: translateY(0);
   }
 }
+
+
+/* Кнопка массового редактирования */
+.actions-button > button:last-of-type {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 10px 0;
+}
+
+.actions-button > button:last-of-type:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+}
+
+/* Панель управления массовым редактированием */
+.bulk-controls {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 15px 0;
+  border: 2px solid #007bff;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.bulk-controls span {
+  font-weight: 600;
+  color: #212529;
+  padding: 6px 12px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+}
+
+.bulk-controls select {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+}
+
+.bulk-controls select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.bulk-controls button {
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.bulk-controls button:hover {
+  background: #545b62;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+  .bulk-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  
+  .bulk-controls span,
+  .bulk-controls select,
+  .bulk-controls button {
+    width: 100%;
+  }
+}
+
+
+.data-importer {
+  margin: 20px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.data-importer h3 {
+  margin: 0 0 15px 0;
+  color: #212529;
+}
+
+.drop-zone {
+  border: 2px dashed #adb5bd;
+  border-radius: 6px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: white;
+}
+
+.drop-zone:hover {
+  border-color: #007bff;
+  background: #f8f9ff;
+}
+
+.drop-zone.dragging {
+  border-color: #28a745;
+  background: #f0fff4;
+}
+
+.drop-zone.error {
+  border-color: #dc3545;
+  background: #fff5f5;
+}
+
+.drop-zone-content p {
+  margin: 0 0 15px 0;
+  color: #6c757d;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-input + label {
+  display: inline-block;
+  background: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.file-input + label:hover {
+  background: #0056b3;
+}
+
+.import-error {
+  margin-top: 15px;
+  padding: 10px;
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  font-size: 14px;
+}

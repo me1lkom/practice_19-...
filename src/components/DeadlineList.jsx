@@ -1,5 +1,5 @@
+import "../style/DeadlineForm.css"
 function DeadlineList({ deadlines, technologies, onDelete }) {
-  // Группируем дедлайны по технологии для отображения
   const getTechWithDeadline = (techId) => {
     const tech = technologies.find(t => t.id === techId);
     const deadline = deadlines.find(d => d.technologyId === techId);
@@ -14,10 +14,9 @@ function DeadlineList({ deadlines, technologies, onDelete }) {
     };
   };
 
-  // Получаем все технологии с дедлайнами
   const techsWithDeadlines = deadlines
     .map(d => getTechWithDeadline(d.technologyId))
-    .filter(Boolean); // Убираем null
+    .filter(Boolean); 
 
   if (techsWithDeadlines.length === 0) {
     return (
@@ -47,7 +46,7 @@ function DeadlineList({ deadlines, technologies, onDelete }) {
             
             <div className="deadline-info">
               <div className="deadline-label">
-                <strong>📅 Дедлайн:</strong>
+                <strong>Дедлайн:</strong>
                 <span className={`deadline-date ${tech.deadlineStatus}`}>
                   {new Date(tech.deadline).toLocaleDateString('ru-RU', {
                     weekday: 'long',
@@ -81,7 +80,6 @@ function DeadlineList({ deadlines, technologies, onDelete }) {
   );
 }
 
-// Функция для определения статуса дедлайна
 const getDeadlineStatus = (deadlineDate) => {
   const today = new Date();
   const deadline = new Date(deadlineDate);

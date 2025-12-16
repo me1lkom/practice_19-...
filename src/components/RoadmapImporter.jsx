@@ -10,7 +10,6 @@ function RoadmapImporter({ onImport, onReset, existingTechnologies }) {
     error, 
   } = useTechnologiesApi('https://693c74a8b762a4f15c40898b.mockapi.io/tech-tracker/technologies');
 
-  // Функция проверки дубликатов
   const isDuplicate = (techTitle) => {
     return existingTechnologies.some(
       tech => tech.title.toLowerCase() === techTitle.toLowerCase()
@@ -26,32 +25,25 @@ function RoadmapImporter({ onImport, onReset, existingTechnologies }) {
   setImporting(true);
   try {
     
-    // Собираем технологии для импорта
     const importPromises = [];
     
-    // Ищем первые 3 УНИКАЛЬНЫЕ технологии
     for (const tech of catalog) {      
-      // Проверяем на дубликаты
       if (isDuplicate(tech.title)) {
-        continue; // Пропускаем дубликат и идем дальше
+        continue; 
       }
       
-      // Преобразуем данные из формата MockAPI в наш формат
       const techToAdd = {
         title: tech.title,
         description: tech.description || `Изучение ${tech.title}`,
         notes: tech.notes || ''
       };
       
-      // Собираем промисы
       importPromises.push(onImport(techToAdd));
     }
     
-    // Ждем завершения ВСЕХ импортов
     if (importPromises.length > 0) {
       await Promise.all(importPromises);
     } else {
-      // Если importedCount === 0, значит все технологии в каталоге уже есть
       alert('Все доступные технологии из каталога уже добавлены!');
     }
     

@@ -6,13 +6,7 @@ function DataExporter({ technologies }) {
 
   const exportData = () => {
     const exportData = {
-      version: "1.0",
-      exportedAt: new Date().toISOString(),
-      technologies: includeUserData
-        ? technologies.map((tech) => ({
-            ...tech,
-          }))
-        : technologies.map(({ notes, status, deadline, ...tech }) => tech), // Исключаем пользовательские данные
+      technologies,
     };
 
     let dataStr, fileType, fileName;
@@ -39,44 +33,11 @@ function DataExporter({ technologies }) {
   return (
     <div className="data-exporter">
       <h3>Экспорт данных</h3>
-
-      <div className="export-options">
-        <div className="form-group">
-          <label htmlFor="export-format">Формат экспорта</label>
-          <select
-            id="export-format"
-            value={exportFormat}
-            onChange={(e) => setExportFormat(e.target.value)}
-          >
-            <option value="json">JSON</option>
-            <option value="csv" disabled>
-              CSV (скоро)
-            </option>
-          </select>
-        </div>
-
-        <div className="form-group checkbox-group">
-          <label>
-            <input
-              type="checkbox"
-              checked={includeUserData}
-              onChange={(e) => setIncludeUserData(e.target.checked)}
-            />
-            Включить мои заметки и прогресс
-          </label>
-          <span className="help-text">
-            При включении будут экспортированы ваши личные заметки и статусы
-            изучения
-          </span>
-        </div>
-      </div>
-
       {!canExport && (
         <div className="export-warning" role="alert">
           Нет данных для экспорта. Добавьте технологии в трекер.
         </div>
       )}
-
       <button
         onClick={exportData}
         disabled={!canExport}
@@ -85,10 +46,6 @@ function DataExporter({ technologies }) {
       >
         Экспортировать данные
       </button>
-
-      <div id="export-help" className="help-text">
-        Данные будут сохранены в выбранном формате на вашем устройстве
-      </div>
     </div>
   );
 }

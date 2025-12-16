@@ -11,7 +11,6 @@ function Login({ onLogin }) {
     e.preventDefault();
 
     
-    // Простая проверка (можно заменить на реальную)
     if (username === 'admin' && password === 'password') {
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("username", username);

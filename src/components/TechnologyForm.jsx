@@ -1,28 +1,24 @@
-import { useEffect, useState, useRef } from "react"; // Добавьте useRef
+import { useEffect, useState, useRef } from "react";
 import "../style/TechnologyForm.css";
 function TechnologyForm({ onSave, onCancel, initialData = {} }) {
-  // состояние формы с начальными значениями
   const [formData, setFormData] = useState({
-    title: initialData.title || "", // название технологии
-    description: initialData.description || "", // описание
-    category: initialData.category || "frontend", // категория
-    difficulty: initialData.difficulty || "beginner", // сложность
-    deadline: initialData.deadline || "", // дедлайн (необязательно)
-    resources: initialData.resources || [""], // массив URL ресурсов
+    title: initialData.title || "", 
+    description: initialData.description || "", 
+    category: initialData.category || "frontend",
+    difficulty: initialData.difficulty || "beginner",
+    deadline: initialData.deadline || "",
+    resources: initialData.resources || [""],
   });
 
-  const statusRef = useRef(null); // Для озвучивания статуса
+  const statusRef = useRef(null);
 
-  // состояние для хранения ошибок валидации
   const [errors, setErrors] = useState({});
 
-  // флаг валидности всей формы
   const [isFormValid, setIsFormValid] = useState(false);
 
   const validateForm = () => {
     const newError = {};
 
-    // Валидация названия
     if (formData.title.trim()) {
       if (formData.title.trim().length < 2) {
         newError.title = "Название должно содержать больше 2 символов";
@@ -31,14 +27,12 @@ function TechnologyForm({ onSave, onCancel, initialData = {} }) {
       }
     }
 
-    // Валидация описания
     if (formData.description.trim()) {
       if (formData.description.trim().length < 10) {
         newError.description = "Описание должно содержать больше 10 символов";
       }
     }
 
-    // Валидация дедлайна
     if (formData.deadline) {
       const deadlineDate = new Date(formData.deadline);
       const today = new Date();
@@ -59,7 +53,6 @@ function TechnologyForm({ onSave, onCancel, initialData = {} }) {
     setIsFormValid(Object.keys(newError).length === 0);
   };
 
-  // Проверка URL
   const isValidUrl = (string) => {
     try {
       new URL(string);
@@ -69,7 +62,6 @@ function TechnologyForm({ onSave, onCancel, initialData = {} }) {
     }
   };
 
-  // Запуск валидации при изменении любого input`а, отображение в реальном времени
   useEffect(() => {
     validateForm();
   }, [formData]);
@@ -163,8 +155,6 @@ function TechnologyForm({ onSave, onCancel, initialData = {} }) {
           ? "Редактирование технологии"
           : "Добавление новой технологии"}
       </h2>
-
-      {/* Поле названия */}
       <div className="form-group">
         <label htmlFor="title" className="required">
           Название технологии
@@ -186,8 +176,6 @@ function TechnologyForm({ onSave, onCancel, initialData = {} }) {
           </span>
         )}
       </div>
-
-      {/* Поле описания */}
       <div className="form-group">
         <label htmlFor="description" className="required">
           Описание
@@ -212,8 +200,6 @@ function TechnologyForm({ onSave, onCancel, initialData = {} }) {
           </span>
         )}
       </div>
-
-      {/* Выбор категории */}
       <div className="form-group">
         <label htmlFor="category">Категория</label>
         <select
@@ -230,8 +216,6 @@ function TechnologyForm({ onSave, onCancel, initialData = {} }) {
           <option value="tools">Инструменты</option>
         </select>
       </div>
-
-      {/* Выбор сложности */}
       <div className="form-group">
         <label htmlFor="difficulty">Уровень сложности</label>
         <select
@@ -245,8 +229,6 @@ function TechnologyForm({ onSave, onCancel, initialData = {} }) {
           <option value="advanced">Продвинутый</option>
         </select>
       </div>
-
-      {/* Поле дедлайна */}
       <div className="form-group">
         <label htmlFor="deadline">Планируемая дата освоения</label>
         <input
@@ -265,8 +247,6 @@ function TechnologyForm({ onSave, onCancel, initialData = {} }) {
           </span>
         )}
       </div>
-
-      {/* Поля ресурсов */}
       <div className="form-group">
         <label>Ресурсы для изучения</label>
         {formData.resources.map((resource, index) => (
@@ -313,8 +293,6 @@ function TechnologyForm({ onSave, onCancel, initialData = {} }) {
           + Добавить ещё ресурс
         </button>
       </div>
-
-      {/* Кнопки формы */}
       <div className="form-actions">
         <button type="submit" className="btn-primary">
           {initialData.title ? "Обновить технологию" : "Добавить технологию"}

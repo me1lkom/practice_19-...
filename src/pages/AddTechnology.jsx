@@ -13,7 +13,6 @@ function AddTechnology() {
   const [showForm, setShowForm] = useState(false);
   const [editingTech, setEditingTech] = useState(null);
 
-  // Обработчик сохранения технологии
   const handleSaveTechnology = (techData) => {
 
     addTechnology(techData)
@@ -22,13 +21,11 @@ function AddTechnology() {
     setEditingTech(null);
   };
 
-  // Обработчик редактирования
   const handleEdit = (technology) => {
     setEditingTech(technology);
     setShowForm(true);
   };
 
-  // Обработчик отмены
   const handleCancel = () => {
     setShowForm(false);
     setEditingTech(null);

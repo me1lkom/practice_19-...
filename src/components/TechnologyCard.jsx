@@ -11,10 +11,8 @@ function TechnologyCard({
 }) {
   const handleClick = () => {
     if (isBulkMode) {
-      // В режиме выбора - выбираем карточку
       onSelect();
     } else {
-      // В обычном режиме - меняем статус
       onStatusChange();
     }
   };
