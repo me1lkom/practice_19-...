@@ -6,3 +6,94 @@
     display: flex;
     justify-content: space-around;
 }
+/* TechnologyDetail.css - Адаптивность */
+
+/* Мобильные (до 768px) */
+@media (max-width: 768px) {
+  .technology-detail-page,
+  .app {
+    padding: 15px;
+  }
+  
+  .page-header h1 {
+    font-size: 24px;
+  }
+  
+  .back-link {
+    font-size: 14px;
+  }
+  
+  .technology-detail {
+    padding: 20px;
+  }
+  
+  .detail-section h3 {
+    font-size: 18px;
+  }
+  
+  .detail-section p {
+    font-size: 15px;
+  }
+  
+  .status-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .status-buttons button {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .detail-section {
+    margin-bottom: 20px;
+  }
+}
+
+/* Очень маленькие экраны (до 480px) */
+@media (max-width: 480px) {
+  .technology-detail-page,
+  .app {
+    padding: 10px;
+  }
+  
+  .page-header h1 {
+    font-size: 22px;
+  }
+  
+  .technology-detail {
+    padding: 15px;
+  }
+  
+  .detail-section h3 {
+    font-size: 17px;
+  }
+  
+  .detail-section p {
+    font-size: 14px;
+  }
+  
+  .status-buttons button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* Большие экраны (от 1024px) */
+@media (min-width: 1024px) {
+  .technology-detail-page,
+  .app {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 30px;
+  }
+}
+
+/* Очень большие экраны (от 1440px) */
+@media (min-width: 1440px) {
+  .technology-detail-page,
+  .app {
+    max-width: 1000px;
+  }
+}

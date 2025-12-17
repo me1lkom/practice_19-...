@@ -17,7 +17,7 @@ function Navigation({ isLoggedIn, username, onLogout }) {
             to="/deadline"
             className={location.pathname === "/deadline" ? "active" : ""}
           >
-            Управление дедлайнами
+            Дедлайны
           </Link>
         </li>
 

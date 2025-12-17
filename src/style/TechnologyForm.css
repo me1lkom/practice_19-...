@@ -50,7 +50,7 @@ button:focus {
 }
 
 .form-validation-info:not(:empty) {
-  background-color: #f8f9fa;
+  /* background-color: #f8f9fa; */
   border: 1px solid #dee2e6;
 }
 

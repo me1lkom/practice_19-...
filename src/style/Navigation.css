@@ -6,7 +6,7 @@
   /* background: white; */
   border-radius: 16px;
   padding: 16px 32px;
-  width: 100%;
+  /* width: 100%; */
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   border: 1px solid #e1e8ed;
   margin-bottom: 16px;
@@ -102,7 +102,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 940px) {
   .main-navigation {
     flex-direction: column;
     gap: 16px;

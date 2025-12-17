@@ -1,7 +1,7 @@
 .deadlines-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .page-header {
@@ -23,7 +23,7 @@
 
 .deadline-section {
   border-radius: 12px;
-  padding: 25px;
+  /* padding: 25px; */
 }
 
 .tech-checkboxes {

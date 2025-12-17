@@ -142,9 +142,10 @@ body {
 
 /* Адаптивность */
 @media (max-width: 1024px) {
-  .technology__grid {
+  .technology-grid {
     grid-template-columns: repeat(auto-fit, minmax(20rem, 25rem));
   }
+  
 }
 
 @media (max-width: 768px) {

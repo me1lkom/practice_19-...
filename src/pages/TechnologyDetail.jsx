@@ -6,7 +6,6 @@ import useTechnologies from "../components/useTechnologies";
 import {
   Card,
 } from "@mui/material";
-
 function TechnologyDetail() {
   
   const { 
