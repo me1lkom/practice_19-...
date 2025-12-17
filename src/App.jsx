@@ -12,6 +12,8 @@ import Statistics from "./pages/Statistics.jsx";
 import AddTechnology from "./pages/AddTechnology.jsx";
 import DeadlineManagement from "./pages/DeadlineManagement.jsx";
 
+import { ThemeProvider } from './components/ThemeChange';
+
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -41,6 +43,7 @@ function App() {
   };
 
   return (
+    <ThemeProvider>
     <Router>
       <div className="app">
         <Navigation 
@@ -89,6 +92,7 @@ function App() {
         </main>
       </div>
     </Router>
+    </ThemeProvider>
   );
 }
 

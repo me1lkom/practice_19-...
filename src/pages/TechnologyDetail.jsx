@@ -2,6 +2,11 @@ import { useParams, Link, useNavigate, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../style/TechnologyDetail.css";
 import useTechnologies from "../components/useTechnologies";
+
+import {
+  Card,
+} from "@mui/material";
+
 function TechnologyDetail() {
   
   const { 
@@ -46,7 +51,7 @@ function TechnologyDetail() {
 
   if (!technology) {
     return (
-      <div className="page">
+      <div className="app">
         <h1>Технология не найдена</h1>
         <p>Технология с ID {techId} не существует.</p>
         <Link to="/technologies" className="btn">
@@ -58,7 +63,7 @@ function TechnologyDetail() {
 
 
   return (
-    <div className="page">
+    <div className="app">
         {console.log(technology.id)}
       <div className="page-header">
         <Link to="/technologies" className="back-link">
@@ -66,7 +71,7 @@ function TechnologyDetail() {
         </Link>
         <h1>{technology.title}</h1>
       </div>
-      <div className="technology-detail">
+      <Card className="technology-detail">
         <div className="detail-section">
           <h3>Описание</h3>
           <p>{technology.description}</p>
@@ -100,7 +105,7 @@ function TechnologyDetail() {
             <p>{technology.notes}</p>
           </div>
         )}
-      </div>
+      </Card>
 
       <div>
         <button onClick={handleDelete}> Удалить технологию </button>

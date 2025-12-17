@@ -149,12 +149,6 @@ function TechnologyForm({ onSave, onCancel, initialData = {} }) {
         aria-atomic="true"
         className="sr-only"
       />
-
-      <h2>
-        {initialData.title
-          ? "Редактирование технологии"
-          : "Добавление новой технологии"}
-      </h2>
       <div className="form-group">
         <label htmlFor="title" className="required">
           Название технологии
@@ -166,6 +160,7 @@ function TechnologyForm({ onSave, onCancel, initialData = {} }) {
           value={formData.title}
           onChange={handleChange}
           className={errors.title ? "error" : ""}
+          placeholder="Напишите название..."
           aria-invalid={!!errors.title}
           aria-describedby={errors.title ? "title-error" : undefined}
           required

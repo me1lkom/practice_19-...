@@ -1,13 +1,17 @@
 import TechnologyForm from "../components/TechnologyForm.jsx";
-import Modal from "../reusable/Modal.jsx"; // Импортируем готовую модалку
-import useTechnologies from "../components/useTechnologies.jsx"; // 👈 Импортируем хук!
+import Modal from "../reusable/Modal.jsx";
+import useTechnologies from "../components/useTechnologies.jsx";
 
 import { useState } from "react";
+import {
+  Card,
+  Typography
+} from "@mui/material";
+
 function AddTechnology() {
   const { 
     technologies, 
     addTechnology, 
-    deleteTechnology,  
   } = useTechnologies();
   
   const [showForm, setShowForm] = useState(false);
@@ -32,7 +36,7 @@ function AddTechnology() {
   };
 
   return (
-    <div className="page">
+    <div className="app">
       <div className="technology-manager">
         <div className="manager-header">
           <h2>Управление технологиями</h2>
@@ -43,13 +47,13 @@ function AddTechnology() {
 
         <div className="technologies-list">
           {technologies.map((tech) => (
-            <div key={tech.id} className="technology-item">
-              <h3>{tech.title}</h3>
-              <p>{tech.description}</p>
+            <Card key={tech.id} className="technology-item">
+              <Typography variant="h5" component="h2" gutterBottom>{tech.title}</Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>{tech.description}</Typography>
               <div className="tech-actions">
                 <button onClick={() => handleEdit(tech)}>Редактировать</button>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
 

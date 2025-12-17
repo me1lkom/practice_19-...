@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 
 function SearchBar({ onSearchChange }) {
   const [localQuery, setLocalQuery] = useState("");
@@ -19,16 +19,16 @@ function SearchBar({ onSearchChange }) {
     }, 300);
   };
 
-  useEffect(() => {
-    return () => {
-      if (searchTimeoutRef.current) {
-        clearTimeout(searchTimeoutRef.current);
-      }
-      if (searchTimeoutRef.current) {
-        searchTimeoutRef.current.abort();
-      }
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     if (searchTimeoutRef.current) {
+  //       clearTimeout(searchTimeoutRef.current);
+  //     }
+  //     if (searchTimeoutRef.current) {
+  //       searchTimeoutRef.current.abort();
+  //     }
+  //   };
+  // }, []);
 
   return (
     <input

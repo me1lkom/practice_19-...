@@ -40,11 +40,11 @@ function useTechnologies() {
   const nextStatus = (currentStatus) => {
     switch (currentStatus) {
       case "completed":
-        return "in-progress";
-      case "in-progress":
         return "not-started";
-      case "not-started":
+      case "in-progress":
         return "completed";
+      case "not-started":
+        return "in-progress";
       default:
         return currentStatus;
     }

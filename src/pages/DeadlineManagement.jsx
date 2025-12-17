@@ -26,11 +26,10 @@ function DeadlineManagement() {
   };
 
   return (
-    <div className="page">
+    <div className="app">
       <div className="deadlines-page">
         <header className="page-header">
           <h1>Управление дедлайнами</h1>
-          <p>Устанавливайте сроки изучения для выбранных технологий</p>
         </header>
 
         <main className="deadlines-content">

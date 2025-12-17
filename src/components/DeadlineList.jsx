@@ -1,4 +1,7 @@
 import "../style/DeadlineForm.css"
+import {
+  Card,
+} from '@mui/material';
 function DeadlineList({ deadlines, technologies, onDelete }) {
   const getTechWithDeadline = (techId) => {
     const tech = technologies.find(t => t.id === techId);
@@ -33,7 +36,7 @@ function DeadlineList({ deadlines, technologies, onDelete }) {
       
       <div className="tech-cards-grid">
         {techsWithDeadlines.map(tech => (
-          <div key={tech.deadlineId} className="tech-card-with-deadline">
+          <Card key={tech.deadlineId} className="tech-card-with-deadline">
             <div className="tech-card-header">
               <h4>{tech.title}</h4>
               <span className={`status-badge ${tech.status}`}>
@@ -58,22 +61,17 @@ function DeadlineList({ deadlines, technologies, onDelete }) {
               </div>
               
               <div className="deadline-status">
-                <span className={`status-indicator ${tech.deadlineStatus}`}>
-                  {tech.deadlineStatus === 'expired' ? '⏰ Просрочен' :
-                   tech.deadlineStatus === 'warning' ? '⚠️ Скоро истекает' : '✅ Активен'}
-                </span>
-                
                 <button
                   onClick={() => onDelete(tech.deadlineId)}
                   className="delete-deadline-btn"
                   aria-label="Удалить дедлайн"
                   title="Удалить дедлайн"
                 >
-                  ×
+                  x
                 </button>
               </div>
             </div>
-          </div>
+          </Card>
         ))}
       </div>
     </div>

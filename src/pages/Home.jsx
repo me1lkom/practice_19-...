@@ -1,17 +1,19 @@
 import "../style/App.css";
 import { useState } from "react";
 import TechnologyCard from "../components/TechnologyCard.jsx";
-import ProgressHeader from "../components/ProgressHeader.jsx";
+import ProgressHeader from "../components/Progress.jsx";
 import QuickActions from "../components/QuickActions.jsx";
 import FilterChange from "../components/FilterChange.jsx";
 import useTechnologies from "../components/useTechnologies.jsx";
-import ProgressBar from "../reusable/ProgressBar.jsx";
+// import ProgressBar from "../reusable/ProgressBar.jsx";
 
 import RoadmapImporter from "../components/RoadmapImporter.jsx";
 import SearchBar from "../components/SearchBar.jsx";
 
 import DataExporter from "../components/DataExporter.jsx";
 import DataImporter from "../components/DataImporter.jsx";
+
+import { Grid } from "@mui/material";
 function Home() {
   const {
     technologies,
@@ -19,7 +21,7 @@ function Home() {
     updateNotes,
     addTechnology,
     resetToInitial,
-    progress,
+    // progress,
     handleAllCompleted,
     handleReset,
     handleSelectRandom,
@@ -70,15 +72,16 @@ function Home() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Трекер изучения технологий</h1>
-        <ProgressBar
+        {/* <h1>Трекер изучения технологий</h1> */}
+        {/* <ProgressBar
           progress={progress}
           label="Общий прогресс"
           color="#4CAF50"
           animated={true}
           height={20}
-        />
+        /> */}
         <ProgressHeader
+          technologies={technologies}
           totalCount={totalCount}
           completedCount={completedCount}
           inProgressCount={inProgressCount}
@@ -127,9 +130,26 @@ function Home() {
           <SearchBar onSearchChange={handleSearchChange} />
           <span>Найдено: {filteredTechnologies.length}</span>
         </div>
-        <div className="technologies-grid">
+
+        <Grid
+          container
+          spacing={3}
+          justifyContent="space-around"
+          alignItems="stretch"
+        >
           {filteredTechnologies.map((tech) => (
-            <div key={tech.id}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              key={tech.id}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <TechnologyCard
                 key={tech.id}
                 technology={tech}
@@ -139,9 +159,11 @@ function Home() {
                 isSelected={selectedTechIds.includes(tech.id)}
                 onSelect={() => toggleTechSelection(tech.id)}
               />
-            </div>
+            </Grid>
           ))}
-        </div>
+        </Grid>
+
+        {/* <div className="technologies-grid"></div> */}
       </main>
     </div>
   );

@@ -1,4 +1,4 @@
-.technology-card {
+/* .technology-card {
   padding: 1.5rem;
   margin: 1rem;
   border-radius: 12px;
@@ -21,7 +21,7 @@
 .technology-card.not-started {
   background: #ffcdd2;
   border: 2px solid #f44336;
-}
+} */
 
 .technology-title {
   font-size: 1.5rem;

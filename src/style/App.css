@@ -7,7 +7,6 @@
 
 html,
 body {
-  height: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -35,7 +34,6 @@ body {
 
 /* Секция прогресса */
 .app-header {
-  background: white;
   border-radius: 16px;
   padding: 24px;
   width: 100%;
@@ -44,7 +42,6 @@ body {
 }
 
 .app-main {
-  background: white;
   border-radius: 16px;
   padding: 24px;
   width: 100%;
@@ -79,7 +76,7 @@ body {
   align-items: center;
   gap: 16px;
   margin-bottom: 30px;
-  background: #f8fafc;
+  /* background: #f8fafc; */
   padding: 16px 20px;
   border-radius: 12px;
   border: 1px solid #e2e8f0;
@@ -103,12 +100,12 @@ body {
 }
 
 .search-input::placeholder {
-  color: #a0aec0;
+  /* color: #a0aec0; */
 }
 
 .search-box span {
   font-size: 15px;
-  color: #718096;
+  /* color: #718096; */
   font-weight: 500;
   white-space: nowrap;
 }
@@ -122,7 +119,7 @@ body {
 }
 
 .technologies-grid {
-  background: white;
+  /* background: white; */
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -304,14 +301,14 @@ body {
 .data-importer {
   margin: 20px 0;
   padding: 20px;
-  background: #f8f9fa;
+  /* background: #f8f9fa; */
   border-radius: 8px;
   border: 1px solid #dee2e6;
 }
 
 .data-importer h3 {
   margin: 0 0 15px 0;
-  color: #212529;
+  /* color: #212529; */
 }
 
 .drop-zone {
@@ -321,12 +318,12 @@ body {
   text-align: center;
   cursor: pointer;
   transition: all 0.2s;
-  background: white;
+  /* background: white; */
 }
 
 .drop-zone:hover {
   border-color: #007bff;
-  background: #f8f9ff;
+  /* background: #f8f9ff; */
 }
 
 .drop-zone.dragging {

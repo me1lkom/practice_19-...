@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
+  /* background: white; */
   border-radius: 16px;
   padding: 16px 32px;
   width: 100%;
@@ -28,7 +28,7 @@
 
 .nav-menu a {
   text-decoration: none;
-  color: #4a5568;
+  /* color: #4a5568; */
   font-size: 16px;
   font-weight: 500;
   padding: 10px 16px;
